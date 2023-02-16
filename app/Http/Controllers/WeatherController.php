@@ -14,6 +14,8 @@ class WeatherController extends Controller
 
     public function show(Request $request, $city, OpenWeatherApiService $openWeatherApiService)
     {
-        dd($openWeatherApiService->getWeatherForCity($city));
+        $weatherData = $openWeatherApiService->getWeatherForCity($city);
+        
+        return view('weather.index')->with('weatherData', $weatherData);
     }
 }

@@ -8,16 +8,53 @@
 </head>
 
 <body>
-    <div class="flex items-center justify-center h-screen">
-        <div class="bg-indigo-500 p-6 rounded shadow-2xl">
-            <input type="text" class="rounded p-2 h-10">
-            <button class="rounded p-2 bg-white- h-10">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg>
-            </button>
+    <div class="min-h-screen flex items-center justify-center bg-cover bg-center"
+        style="background-image: url({{ asset('assets/img/background.jpg') }})">
+        <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs">
+            <input type="text" class="font-bold text-xl" value="{{ $weatherData['name'] }}">
+            <!--<div class="font-bold text-xl">Sydney</div>-->
+            <div class="text-sm text-gray-500">
+                {{ Carbon\Carbon::createFromTimestamp($weatherData['dt'], $weatherData['timezone'] / 3600)->locale('cs')->diffForHumans() }}
+            </div>
+            <div class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
+                <img src="https://openweathermap.org/img/wn/{{ $weatherData['weather'][0]['icon'] }}@4x.png">
+            </div>
+            <div class="flex flex-row items-center justify-center mt-6">
+                <div class="font-medium text-6xl">{{ round($weatherData['main']['temp']) }}°C</div>
+                <div class="flex flex-col items-left ml-6">
+                    <div>{{ $weatherData['main']['temp'] }}</div>
+                    <div class="mt-1">
+                        <span class="text-sm text-right">
+                            <span class="text-sm text-red-500"><i class="fas fa-arrow-up"></i></span>
+                        </span>
+                        <span class="text-sm font-light text-gray-500">{{ round($weatherData['main']['temp_max']) }}°C</span>
+                    </div>
+                    <div>
+                        <span class="text-sm">
+                            <span class="text-sm text-blue-500"><i class="fas fa-arrow-down"></i></span>
+                        </span>
+                        <span class="text-sm font-light text-gray-500">{{ round($weatherData['main']['temp_min']) }}°C</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between mt-6">
+                <div class="flex flex-col items-center">
+                    <div class="font-medium text-sm">Vítr</div>
+                    <div class="text-sm text-gray-500">{{ number_format($weatherData['wind']['speed'], 1, ',') }} m/s</div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="font-medium text-sm">Vlhkost</div>
+                    <div class="text-sm text-gray-500">{{ number_format($weatherData['main']['humidity'], 0) }} %</div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="font-medium text-sm">Viditelnost</div>
+                    <div class="text-sm text-gray-500">{{ number_format($weatherData['visibility'] / 1000, 1, ',') }} km</div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 </body>
 
 </html>
