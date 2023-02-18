@@ -9,10 +9,9 @@
 
 <body>
     <div class="min-h-screen flex items-center justify-center bg-cover bg-center"
-        style="background-image: url({{ asset('assets/img/background.jpg') }})">
+        style="background-image: url({{ asset('assets/img/background.webp') }})">
         <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs">
             <input type="text" class="font-bold text-xl" value="{{ $weatherData['name'] }}">
-            <!--<div class="font-bold text-xl">Sydney</div>-->
             <div class="text-sm text-gray-500">
                 {{ Carbon\Carbon::createFromTimestamp($weatherData['dt'], $weatherData['timezone'] / 3600)->locale('cs')->diffForHumans() }}
             </div>

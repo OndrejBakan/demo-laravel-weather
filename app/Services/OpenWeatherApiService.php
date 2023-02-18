@@ -17,8 +17,6 @@ class OpenWeatherApiService
     public function getWeatherForCity($city)
     {
         $response = Cache::remember($city, 5, function() use ($city) {
-            $url = sprintf('http://api.openweathermap.org/data/2.5/weather?q=%s&APPID=%s&units=metric', $city, $this->apiKey);
-
             return Http::withUrlParameters([
                 'base'      => 'http://api.openweathermap.org/data',
                 'version'   => '2.5',
