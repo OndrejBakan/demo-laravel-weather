@@ -31,25 +31,22 @@ class LocationSearch extends Component
 
     public function updatedSearchQuery()
     {
-        $this->locationSelected = false;
-
         if (strlen($this->searchQuery) > 2)
         {
             $this->searchResults = $this->openWeatherApiService->getCoordinatesByLocationName($this->searchQuery);
             $this->showResults = true;
         }
-        
     }
 
-    public function locationSelected($lat, $lon)
+    public function locationSelected($lat, $lon, $name)
     {
-        
+        $this->searchQuery = $name;
+
         $this->currentWeatherData = $this->openWeatherApiService->getCurrentWeatherByCoordinates($lat, $lon);
         $this->forecastWeatherData = $this->prepareForecastData($this->openWeatherApiService->getForecastByCoordinates($lat, $lon));
 
         $this->showResults = false;
         $this->locationSelected = true;
-        $this->dispatchBrowserEvent('location-selected');
     }
 
     private function prepareForecastData($forecastWeatherData)

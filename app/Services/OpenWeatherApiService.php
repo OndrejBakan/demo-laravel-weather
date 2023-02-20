@@ -16,7 +16,7 @@ class OpenWeatherApiService
 
     public function getCurrentWeatherByCoordinates($lat, $lon)
     {
-        $response = Cache::remember($lat . ';' . $lon . 'currentWeather', 5, function() use ($lat, $lon) {
+        $response = Cache::remember($lat . ';' . $lon . 'weather', 5, function() use ($lat, $lon) {
             return Http::withUrlParameters([
                 'base'      => 'http://api.openweathermap.org/data',
                 'version'   => '2.5',
@@ -24,6 +24,7 @@ class OpenWeatherApiService
                 'lat'       => $lat,
                 'lon'       => $lon,
                 'units'     => 'metric',
+                'lang'      => 'cz',
                 'APPID'     => $this->apiKey,
                 
             ])
@@ -44,6 +45,7 @@ class OpenWeatherApiService
                 'lat'       => $lat,
                 'lon'       => $lon,
                 'units'     => 'metric',
+                'lang'      => 'cz',
                 'APPID'     => $this->apiKey,
                 
             ])

@@ -11,30 +11,11 @@
 </head>
 
 <body>
-    <div class="min-h-screen flex-row items-left justify-left bg-cover bg-center"
-        x-data="animation()"
-        @location-selected.window="animate()">
-
+    <div class="min-h-screen flex-row items-left justify-left bg-cover bg-center">
         <livewire:location-search>
-
     </div>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     @livewireScripts
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('animation', () => ({
-                open: false,
-                animate() {
-                    if (this.open) {
-                        setTimeout(() => this.open = false, 1000);
-                        setTimeout(() => this.open = true, 2000);
-                    } else {
-                        setTimeout(() => this.open = true, 1000);
-                    }
-                },
-            }))
-        })
-    </script>
 </body>
 
 </html>
