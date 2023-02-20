@@ -1,6 +1,5 @@
 <div
-    class="min-h-screen flex flex-row items-center justify-left bg-cover bg-center"
-    style="background-image: url({{ asset('assets/img/background.webp') }})">
+    class="min-h-screen flex flex-row items-center justify-left bg-gradient-to-r from-cyan-500 to-blue-500">
     <div class="flex flex-col bg-white rounded p-4 m-4 w-full max-w-xs">
         <div class="flex flex-col items-center">
             <div class="w-full flex flex-col items-center h-64">

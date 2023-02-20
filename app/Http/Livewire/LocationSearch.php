@@ -30,7 +30,9 @@ class LocationSearch extends Component
     }
 
     public function updatedSearchQuery()
-    {  
+    {
+        $this->locationSelected = false;
+
         if (strlen($this->searchQuery) > 2)
         {
             $this->searchResults = $this->openWeatherApiService->getCoordinatesByLocationName($this->searchQuery);
